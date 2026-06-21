@@ -28,7 +28,7 @@ Before starting any task, output this block exactly:
 --- UNDERSTANDING CHECK ---
 Project: [what this project is, one sentence]
 Current state: [where we are right now]
-Completed so far: [list of completed steps]
+Completed so far: [list of completed steps or none]
 Next action I will take: [exact first step]
 Files I read: [list]
 Awaiting confirmation: yes
@@ -44,7 +44,7 @@ Never skip this. Never assume understanding is correct.
 ## Core Behavior Rules
 
 - Work one step at a time. Never jump ahead.
-- After every step, output a CHECKPOINT BLOCK.
+- After every step, output all 4 blocks defined below.
 - Wait for the word committed before moving to next step.
 - Never assume missing facts. Stop and ask instead.
 - Never repeat completed steps.
@@ -53,18 +53,33 @@ Never skip this. Never assume understanding is correct.
 
 ---
 
-## File Output Rules (Most Important Section)
+## The 4 Required Blocks After Every Step
 
-Never say: "Update BRAIN.md with the new findings."
-Never output full files unless the user asks for full file.
-Always assume the user is editing on a phone.
-Minimize every edit to the smallest possible change.
+Output these 4 blocks in this exact order after every completed step.
 
-Always output file changes in this exact PATCH format:
+---
+
+### Block 1: Step Complete
+
+```
+---STEP COMPLETE---
+Step: [N — name]
+Result: [one sentence summary]
+---END STEP---
+```
+
+---
+
+### Block 2: File Patches
+
+Never say "update BRAIN.md".
+Always show exact OLD text and exact NEW text.
+Never output full files unless user asks.
+Assume user is on phone. Minimize every edit.
 
 ```
 ---PATCH---
-FILE: [filename]
+FILE: BRAIN.md
 
 OLD:
 [exact text currently in the file]
@@ -74,61 +89,67 @@ NEW:
 ---END PATCH---
 ```
 
-Rules for patches:
-- OLD must be exact text from the current file
-- NEW must be ready to paste with zero editing
-- One patch block per changed section
-- Multiple patches in one response is fine
-- Never describe what changed. Show what changed.
+One patch block per changed section.
+Multiple patches in one response is fine.
 
 ---
 
-## After Every Completed Step: The Full Output Block
+### Block 3: Treasure Detector
 
-After every step, output all three blocks in this order:
+After every step, run this check silently:
 
-### Block 1: Step Complete
 ```
----STEP COMPLETE---
-Step: [N — name]
-Result: [one sentence summary]
----END STEP---
+Did this step produce:
+1. A new discovery? (something important that was learned)
+2. A reusable asset? (framework, prompt, checklist, code module)
 ```
 
-### Block 2: File Changes (patches only)
+Scoring rule:
+- Importance 1-5: skip, do not output
+- Importance 6-7: output DISCOVERY BLOCK
+- Importance 8-10: output ASSET BLOCK
+
+DISCOVERY BLOCK format:
 ```
----PATCH---
-FILE: BRAIN.md
-
-OLD:
-[exact old text]
-
-NEW:
-[exact new text]
----END PATCH---
-
----PATCH---
-FILE: CHECKPOINT.md
-
-OLD:
-[exact old text]
-
-NEW:
-[exact new text]
----END PATCH---
+---DISCOVERY---
+Name: [short name]
+Summary: [2-3 sentences]
+Confidence: High / Medium / Low
+Importance: [6 or 7]
+Future Relevance: High / Medium / Low
+Applies To: [this project / all projects / specific type]
+Save to: DISCOVERIES.md
+---END DISCOVERY---
 ```
 
-### Block 3: Checkpoint
+ASSET BLOCK format:
+```
+---ASSET---
+Name: [short descriptive name]
+Type: Prompt / Framework / Checklist / Code / Decision Tree / Other
+Summary: [what this is and what it does]
+Reusable: Yes / Partially
+Applies To: [all projects / specific domain]
+Importance: [8, 9, or 10]
+Content:
+[paste the actual reusable content here]
+Save to: ASSETS.md
+---END ASSET---
+```
+
+If nothing qualifies, output nothing for Block 3. Do not say "no discoveries found".
+
+---
+
+### Block 4: Checkpoint + Resume
+
 ```
 ---CHECKPOINT---
 Completed: [Step N — name]
 Next: [Step N+1 — name]
-Commit message: [short description of what changed]
+Commit message: [short description]
 ---END CHECKPOINT---
-```
 
-### Block 4: Resume (bottom of EVERY response)
-```
 RESUME: Continue Step [N+1]
 Brain: [BRAIN.md raw link]
 Checkpoint: [CHECKPOINT.md raw link]
@@ -138,47 +159,39 @@ Checkpoint: [CHECKPOINT.md raw link]
 
 ## RESULTS.csv Rule
 
-When an experiment produces results, output a ready-to-append CSV row:
+When an experiment produces results, output:
 
 ```
 ---RESULTS ROW---
 exp_id,date,description,param_1,param_2,param_3,sharpe,cagr,max_dd,trades,oos_sharpe,status,notes
-EXP001,2026-06-21,[description],[val],[val],[val],[val],[val],[val],[val],[val],[status],[notes]
+EXP001,YYYY-MM-DD,[description],[v],[v],[v],[v],[v],[v],[v],[v],[status],[notes]
 ---END RESULTS---
 ```
-
-User pastes this row directly into RESULTS.csv. No manual entry.
 
 ---
 
 ## DO_NOT_REPEAT.md Rule
 
-When any idea is rejected during a session, output:
+When any idea is rejected, output:
 
 ```
 ---DO NOT REPEAT---
-| [today's date] | [rejected idea] | [specific reason] | [decision ref] |
+| [date] | [rejected idea] | [specific reason] | [decision ref] |
 ---END---
 ```
-
-User appends this row to DO_NOT_REPEAT.md.
 
 ---
 
 ## Code Output Rule
 
-When generating code:
-- Always add this comment at top:
-  `# Generated: [date] [model] Step [N]`
+- Always add at top: # Generated: [date] [model] Step [N]
 - Always output full working code, not fragments
 - Always include transaction costs in any backtest
-- User saves as: code/latest.py AND code/[YYYY-MM-DD]-[description].py
+- User saves as: code/latest.py AND code/YYYY-MM-DD-description.py
 
 ---
 
-## What To Do When Facts Are Missing
-
-Do not guess. Do not assume. Output:
+## Missing Information Rule
 
 ```
 ---MISSING INFO---
@@ -190,12 +203,14 @@ Please provide this before I continue.
 
 ---
 
-## What To Do When Instructions Conflict
+## Instruction Priority Order
 
-1. User's current message overrides everything
-2. Project files override training knowledge
-3. MASTER_PROMPT.md overrides default AI behavior
-4. When in doubt, output the conflict and ask
+1. User's current message
+2. Project files
+3. This MASTER_PROMPT.md
+4. Default AI behavior
+
+When in doubt, output the conflict and ask.
 
 ---
 
@@ -203,5 +218,4 @@ Please provide this before I continue.
 
 Before outputting anything, ask:
 Can the user paste this directly into GitHub with zero thinking?
-
-If the answer is no, reformat until the answer is yes.
+If no, reformat until yes.
