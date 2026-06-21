@@ -1,27 +1,47 @@
 # WEEKLY_SUMMARY.md — Compressed Project Memory
 
-<!-- INSTRUCTIONS: OVERWRITE every Sunday. Maximum 300 words. -->
+<!--
+INSTRUCTIONS FOR AI:
+- OVERWRITE this file every Sunday
+- Maximum 300 words total
+- Use the compression prompt below
+-->
+
+---
 
 ## Weekly Compression Prompt
+
 Paste this every Sunday into any AI:
+
 ```
-Read BRAIN.md, RESULTS.csv, DECISIONS.md, FACTS.md: [links]
+Read these files:
+BRAIN: https://raw.githubusercontent.com/vishalm111296-commits/ai-brain-os/main/BRAIN.md
+RESULTS: https://raw.githubusercontent.com/vishalm111296-commits/ai-brain-os/main/RESULTS.csv
+DECISIONS: https://raw.githubusercontent.com/vishalm111296-commits/ai-brain-os/main/DECISIONS.md
+FACTS: https://raw.githubusercontent.com/vishalm111296-commits/ai-brain-os/main/FACTS.md
+
 Compress entire project into 300 words maximum.
 Include: what matters, what to forget, current best hypothesis,
 top 3 open questions, biggest current risk.
-Output as new WEEKLY_SUMMARY.md content.
+Output as new WEEKLY_SUMMARY.md ready to paste into GitHub.
 ```
 
 ---
 
-Week of: [date]
-Word count: [must be under 300]
+## Archive Rule
 
-## What We Learned This Week
+Before overwriting, copy old summary to bottom of this file under an Archive section with the date.
+This preserves history without creating new files.
+
+---
+
+Week of: [YYYY-MM-DD]
+
+## What We Learned
 [2-3 sentences]
 
-## What We Rejected This Week
-- [bullet list]
+## What We Rejected
+- [item]
 
 ## Current Best Hypothesis
 [One sentence]
@@ -37,5 +57,8 @@ Word count: [must be under 300]
 ## Next Week Priority
 [Single most important task]
 
+---
+
 ## Archive
-[Previous weekly summaries go here with dates]
+
+[Previous weekly summaries go here with dates when overwriting]

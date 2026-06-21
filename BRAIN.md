@@ -1,29 +1,55 @@
 # BRAIN.md — Current Reality
 
-<!-- INSTRUCTIONS: OVERWRITE this file at end of every session. Keep under 300 words. -->
+<!--
+INSTRUCTIONS FOR AI:
+- OVERWRITE this entire file at end of every session
+- Keep total content under 300 words
+- This is the most important file. Always read this first after SPEC.md
+-->
 
-Last updated: [date]
+Last updated: [YYYY-MM-DD]
 Account used: [A / B / C / D]
+Model used: [Claude / ChatGPT / Gemini / Perplexity]
+
+---
 
 ## Current Reality
-Goal: [one sentence — what are we trying to do right now]
-Blocker: [what is stopping progress, or "none"]
-Confidence: High / Medium / Low
+
+Goal: [One sentence — what are we trying to do RIGHT NOW]
+Blocker: [What is stopping progress, or write: none]
+Confidence: [High / Medium / Low]
+
+---
 
 ## Current State
-Phase: Research / Building / Testing / Validating
-Active experiment: [EXP-00X or "none"]
-Next action: [single specific task]
 
-## Key Facts (confirmed observations only)
-- [FACT: short one-line observation]
-- [FACT: short one-line observation]
+Phase: [Research / Building / Testing / Validating]
+Active experiment: [EXP-001 or none]
+Next action: [Single specific task — one sentence only]
+
+---
+
+## Key Facts (confirmed observations only — no opinions)
+
+- FACT: [short one-line observation with numbers if possible]
+- FACT: [short one-line observation with numbers if possible]
+
+---
 
 ## Current Best Hypothesis
-[One sentence: what we currently believe is true]
+
+[One sentence: what we currently believe is true about this project]
+
+---
 
 ## Biggest Current Risk
-[One sentence: what could make us wrong]
+
+[One sentence: what single thing could make us wrong]
+
+---
 
 ## Last Session Summary
-[3 sentences: what we did, what we found, what comes next]
+
+What we did: [one sentence]
+What we found: [one sentence]
+Next session starts with: [one sentence — exact first task]

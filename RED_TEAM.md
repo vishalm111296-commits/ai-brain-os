@@ -1,43 +1,49 @@
 # RED_TEAM.md — Why This Project Might Fail
 
-<!-- INSTRUCTIONS: OVERWRITE weekly. Add new attacks as they are discovered. -->
-<!-- Use this file before every major decision. Ask AI to attack using this file. -->
+<!--
+INSTRUCTIONS FOR AI:
+- OVERWRITE this file weekly
+- Read this before every major decision
+- Use the red team prompt below to force critic mode
+-->
 
-## Purpose
-This file stores every known way this project could be wrong.
-Read it before major decisions.
-Use it to prompt AI into critic mode:
-"Attack this project using RED_TEAM.md. Find every reason the current result could be invalid."
+---
 
 ## Red Team Prompt
+
+Paste this to make any AI attack your work:
+
 ```
-Read RED_TEAM.md: [raw link]
-Read RESULTS.csv: [raw link]
-Read FACTS.md: [raw link]
+Read RED_TEAM.md: https://raw.githubusercontent.com/vishalm111296-commits/ai-brain-os/main/RED_TEAM.md
+Read RESULTS.csv: https://raw.githubusercontent.com/vishalm111296-commits/ai-brain-os/main/RESULTS.csv
+Read FACTS.md: https://raw.githubusercontent.com/vishalm111296-commits/ai-brain-os/main/FACTS.md
 
 Attack the current best result.
 Find every reason it could be wrong or misleading.
 Do not suggest improvements. Only find problems.
-Output as numbered list of attacks.
+Output as numbered list. Label each: High / Medium / Low severity.
 ```
-
-## Known Failure Modes
-
-ATTACK-001: [date]
-Risk: [describe the failure mode]
-Severity: High / Medium / Low
-Mitigation: [how to check for this]
-Status: Open / Mitigated
 
 ---
 
-## Standard Attacks (Check These For Every Project)
+## Standard Attacks (Check Every Project Against These)
 
-- Survivorship bias: are failed/delisted assets missing from data?
-- Look-ahead bias: do signals use any future data?
-- Selection bias: was the universe chosen after seeing results?
-- Regime dependency: does it only work in one market condition?
+- Survivorship bias: are failed or delisted assets missing from the data?
+- Look-ahead bias: do any signals use future data even accidentally?
+- Selection bias: was the test universe chosen after seeing results?
+- Regime dependency: does it only work in one type of market?
 - Overfitting: too many parameters tested on too little data?
-- Transaction costs: are realistic costs included?
-- Sample size: are there enough events to be statistically valid?
-- Data quality: are there gaps, errors, or adjustments in the data?
+- Transaction costs: are realistic costs actually included in the code?
+- Sample size: are there enough events to draw valid conclusions?
+- Data quality: are there gaps, errors, or wrong adjustments in data?
+- Implementation gap: will live trading differ from backtest assumptions?
+
+---
+
+## Project-Specific Failure Modes
+
+ATTACK-001:
+Risk: [describe failure mode]
+Severity: High / Medium / Low
+Mitigation: [how to check or fix this]
+Status: Open / Mitigated
