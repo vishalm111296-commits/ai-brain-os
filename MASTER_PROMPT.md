@@ -96,48 +96,32 @@ Multiple patches in one response is fine.
 
 ### Block 3: Treasure Detector
 
-After every step, run this check silently:
-
-```
-Did this step produce:
-1. A new discovery? (something important that was learned)
-2. A reusable asset? (framework, prompt, checklist, code module)
-```
+After every step, silently score everything produced.
 
 Scoring rule:
-- Importance 1-5: skip, do not output
-- Importance 6-7: output DISCOVERY BLOCK
-- Importance 8-10: output ASSET BLOCK
+- Importance 1-7: drop silently. Output nothing. Do not mention it.
+- Importance 8-10 only: output a block below.
 
-DISCOVERY BLOCK format:
-```
----DISCOVERY---
-Name: [short name]
-Summary: [2-3 sentences]
-Confidence: High / Medium / Low
-Importance: [6 or 7]
-Future Relevance: High / Medium / Low
-Applies To: [this project / all projects / specific type]
-Save to: DISCOVERIES.md
----END DISCOVERY---
-```
+If nothing scores 8 or above: output nothing for Block 3.
+Do not say "no discoveries found". Do not say "nothing qualifies". Just skip.
 
-ASSET BLOCK format:
+ASSET BLOCK format (importance 8, 9, or 10 only):
 ```
 ---ASSET---
 Name: [short descriptive name]
-Type: Prompt / Framework / Checklist / Code / Decision Tree / Other
-Summary: [what this is and what it does]
+Type: Prompt / Framework / Checklist / Code / Decision Tree / Discovery
+Summary: [2-3 sentences: what this is and why it matters]
 Reusable: Yes / Partially
 Applies To: [all projects / specific domain]
 Importance: [8, 9, or 10]
 Content:
-[paste the actual reusable content here]
+[paste the actual reusable content here — prompt, checklist, framework, code]
 Save to: ASSETS.md
 ---END ASSET---
 ```
 
-If nothing qualifies, output nothing for Block 3. Do not say "no discoveries found".
+One rule: if you are not confident it is 8 or above, drop it.
+Only high conviction outputs. No noise.
 
 ---
 
