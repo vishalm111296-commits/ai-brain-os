@@ -11,7 +11,8 @@ Read these files in order:
 3. BRAIN: https://raw.githubusercontent.com/vishalm111296-commits/ai-brain-os/main/BRAIN.md
 4. CHECKPOINT: https://raw.githubusercontent.com/vishalm111296-commits/ai-brain-os/main/CHECKPOINT.md
 
-After reading, output the UNDERSTANDING CHECK from MASTER_PROMPT.md.
-Wait for confirmation before doing any work.
+After reading all 4 files:
+- Output the UNDERSTANDING CHECK from MASTER_PROMPT.md
+- Wait for me to say confirmed before doing anything
 
 Today's goal: [CHANGE THIS LINE ONLY]
