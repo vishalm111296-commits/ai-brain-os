@@ -1,0 +1,2 @@
+exp_id,date,description,parameter_1,parameter_2,parameter_3,metric_1,metric_2,metric_3,trades,status,notes
+EXP000,YYYY-MM-DD,Template row — delete this,value,value,value,value,value,value,0,template,Replace with real results
